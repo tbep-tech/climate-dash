@@ -18,27 +18,27 @@ page_navbar(
       accordion_panel(
         "Air Temperature",
         icon = bs_icon("thermometer-half"),
-        includeMarkdown("temp.md")
+        includeMarkdown("doc/temp.md")
       ),
       accordion_panel(
         "Rainfall",
         icon = bs_icon("cloud-rain-fill"),
-        includeMarkdown("rain.md")
+        includeMarkdown("doc/rain.md")
       ),
       accordion_panel(
         "Sea Level",
         icon = bs_icon("water"),
-        includeMarkdown("sl.md")
+        includeMarkdown("doc/sl.md")
       ),
       accordion_panel(
         "Ocean Temperature",
         icon = bs_icon("thermometer-low"),
-        includeMarkdown("sst.md")
+        includeMarkdown("doc/sst.md")
       ),
       accordion_panel(
         "Hurricanes",
         icon = bs_icon("tornado"),
-        includeMarkdown("hurricanes.md")
+        includeMarkdown("doc/hurricanes.md")
       )
     )
   ),

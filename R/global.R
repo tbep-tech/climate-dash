@@ -11,7 +11,7 @@ librarian::shelf(
   tbep-tech/tbeptools,
   StormR, terra, thematic, tibble, tidyr, units)
 set.seed(42)
-source(here("app/functions.R"))
+source(here("R/functions.R"))
 
 # themes ----
 light <- bs_theme(preset = "flatly")
