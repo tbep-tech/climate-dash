@@ -1,0 +1,11 @@
+climate.tbep.org {
+    handle /rstudio/* {
+        reverse_proxy app:8787
+    }
+
+    handle /shiny/* {
+        reverse_proxy app:3838
+    }
+
+    redir / /shiny/app/
+}
