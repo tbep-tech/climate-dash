@@ -31,7 +31,7 @@ var_rds <- list.files(dir_cache, pattern = "\\.rds$", full.names = T)
 if (!all(glue("{cache_vars}.rds") %in% basename(var_rds))){
   vars_miss <- setdiff(glue("{cache_vars}.rds"), basename(var_rds)) |> str_replace("\\.rds", "")
   message(glue("Generating cache since missing vars stored in data/cache/*.rds: {paste(vars_miss, collapse=', ')}"))
-  source(here("app/prep_cache.R"))
+  source(here("server/prep_cache.R"))
 }
 stopifnot(all(glue("{cache_vars}.rds") %in% basename(var_rds)))
 for (var in cache_vars)

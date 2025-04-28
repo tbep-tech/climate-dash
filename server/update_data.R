@@ -134,7 +134,7 @@ main <- function() {
   })
 
   log_message("Updating app cache")
-  source(here("app/prep_cache.R"))
+  source(here("server/prep_cache.R"))
 
   log_message("Data update process completed")
 }
