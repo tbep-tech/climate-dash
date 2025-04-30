@@ -1,9 +1,12 @@
-#!/usr/bin/env Rscript
-
 # Update climate data for Tampa Bay
+
+# needed to run on container cron job
+here::i_am('server/update_data.R')
 
 # log_txt <- "/var/log/climate_data_update.log"
 log_txt <- here::here("tmp_log.txt") # DEBUG
+
+cat(log_txt)
 
 log_message <- function(msg) {
   message   <- paste(
