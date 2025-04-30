@@ -1,6 +1,3 @@
-# needed to run on container cron job
-here::i_am('server/prep_cache.R')
-
 # Script to preprocess and save data as RDS files for faster app loading
 librarian::shelf(
   dplyr, glue, here, lubridate, markdown, purrr, readr, tbeptech/tbeptools, sf,

@@ -1,12 +1,15 @@
 # Update climate data for Tampa Bay
 
-# needed to run on container cron job
-here::i_am('server/update_data.R')
+# Need to set wd to project folder for here::here() to work
+# this will only work in the container
+script_path <- commandArgs(trailingOnly = FALSE)
+script_path <- script_path[grep("--file=", script_path)]
+script_path <- substring(script_path, 8)
+proj_path <- dirname(dirname(script_path))
+setwd(proj_path)
 
 # log_txt <- "/var/log/climate_data_update.log"
 log_txt <- here::here("tmp_log.txt") # DEBUG
-
-cat(log_txt)
 
 log_message <- function(msg) {
   message   <- paste(
@@ -80,7 +83,7 @@ update_prism <- function() {
     vars      = c("tmin", "tmax", "tdmean", "ppt"),
     vars_ytd  = c("ppt"),
     date_beg  = as.Date("1981-01-01"),
-    date_end  = Sys.Date(),
+    date_end  = as.Date('2025-04-29'),#Sys.Date(),
     bbox      = c(xmin = -82.9, ymin = 27.2, xmax = -81.7, ymax = 28.6),
     dir_tif   = here("data/prism"),
     sf_zones  = tb_zones,
@@ -122,8 +125,8 @@ main <- function() {
     prism     = update_prism,
     sea_level = update_sea_level,
     sst       = update_sst,
-    hurricane = update_hurricane,
-    git       = git_update)
+    hurricane = update_hurricane)#,
+    # git       = git_update)
 
   # Run each function with error handling
   lapply(names(update_fns), function(fn_name) {
