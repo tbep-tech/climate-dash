@@ -486,14 +486,14 @@ page_navbar(
     nav_item(
       tags$a(
         shiny::icon("info-circle"),
-        "About",
-        href   = "https://tbep-tech.github.io/climate-change-indicators/",
+        "Source",
+        href   = "https://github.com/tbep-tech/climate-dash",
         target = "_blank") ),
     nav_item(
       tags$a(
         shiny::icon("envelope", class = "fa-solid"),
         "Contact",
-        href   = "https://tbep-tech.github.io/climate-change-indicators/",
+        href   = "https://tbep.org/about-tbep/contact/",
         target = "_blank") ) ),
 
   # sw_dark ----
