@@ -12,6 +12,7 @@ get_prism_r <- function(dates, var){  # dates = dates_then
 }
 
 get_sst_r <- function(dates){  # dates = dates_then
+
   lyrs <- d_sst_r |>
     filter(
       date %in% !!dates) |>
@@ -192,46 +193,20 @@ map_update_rasters <- function(
     r_then <- get_sst_r(dates_then)
   }
 
-  # units
-  var_info <- list(
-    # prism
-    tmin = list(
-      name  = "Min Temperature",
-      units = "°C"),
-    tmax   = list(
-      name  = "Max Temperature",
-      units = "°C"),
-    ppt    = list(
-      name  = "Rain",
-      units = "mm"),
-    pptytd = list(
-      name  = "Rain",
-      sfx   = "year to date",
-      units = "mm"),
-    # sst
-    sst = list(
-      name  = "Sea Surface Temperature",
-      units = "°C"))[[var]]
+  # label
+  var_lbl  <- lab_fun(var, is_imperial)
 
-  if (is_imperial & var_info$units == "°C"){
+  # convert if needed
+  if (is_imperial & grepl("°F", var_lbl)){
     # °C to °F
     r_then <- r_then * 9/5 + 32
     r_now  <- r_now  * 9/5 + 32
-    var_info$units <- "°F"
   }
-  if (is_imperial & var_info$units == "mm"){
+  if (is_imperial & grepl("Rain \\(in\\)", var_lbl)){
     # mm to inch
     r_then <- r_then / 25.4
     r_now  <- r_now  / 25.4
-    var_info$units <- "in"
   }
-
-  # label
-  var_lbl  <- glue("{var_info$name} ({var_info$units})")
-  if ("sfx" %in% names(var_info))
-    var_lbl <- glue(
-      "{var_lbl}
-      {var_info$sfx}")
 
   # legends
   lgnd_now <- glue(
@@ -283,8 +258,51 @@ map_update_rasters <- function(
       layerId =  "lyr_lgnd")
 }
 
+
+lab_fun <- function(var, is_imperial = T){
+
+  # units
+  var_info <- list(
+    # prism
+    tmin = list(
+      name  = "Min Temperature",
+      units = "°C"),
+    tmax   = list(
+      name  = "Max Temperature",
+      units = "°C"),
+    ppt    = list(
+      name  = "Rain",
+      units = "mm"),
+    pptytd = list(
+      name  = "Rain",
+      sfx   = "year to date",
+      units = "mm"),
+    # sst
+    sst = list(
+      name  = "Sea Surface Temperature",
+      units = "°C"))[[var]]
+
+  if (is_imperial & var_info$units == "°C"){
+    var_info$units <- "°F"
+  }
+  if (is_imperial & var_info$units == "mm"){
+    var_info$units <- "in"
+  }
+
+  # label
+  var_lbl  <- glue("{var_info$name} ({var_info$units})")
+  if ("sfx" %in% names(var_info))
+    var_lbl <- glue(
+      "{var_lbl}
+      {var_info$sfx}")
+
+  return(var_lbl)
+
+}
+
 plot_doy <- function(
     df, # required columns: time, val
+    var,
     days_smooth      = 7,
     color_thisyear   = "red",
     color_lastyear   = "orange",
@@ -294,13 +312,13 @@ plot_doy <- function(
     size_otheryears  = 0.5,
     alpha_otheryears = 0.5,
     interactive      = T,
-    ylab             = "Value"){
+    is_imperial      = T){
 
   # DEBUG:
   # df = d_temp; days_smooth = 7
   # color_thisyear = "red"; color_lastyear = "orange"; color_otheryears = "gray"
   # size_thisyear = 1.5; size_lastyear = 1; size_otheryears = 0.5; alpha_otheryears = 0.5
-  # interactive = T
+  # interactive = T; is_imperial = T
 
   # get years
   yr_this <- max(year(df$time))
@@ -318,6 +336,19 @@ plot_doy <- function(
         year == yr_this ~ "this",
         year == yr_last ~ "last",
         T               ~ "other"))
+
+  # label
+  var_lbl <- lab_fun(var, is_imperial)
+
+  # convert to imperial if needed
+  if (is_imperial & grepl("°F", var_lbl)){
+    # °C to °F
+    d$val <- d$val * 9/5 + 32
+  }
+  if (is_imperial & grepl("Rain \\(in\\)", var_lbl)){
+    # mm to inch
+    d$val <- d$val / 25.4
+  }
 
   # get mean per doy per year
   d_doy <- d |>
@@ -387,7 +418,7 @@ plot_doy <- function(
       linewidth  = size_thisyear) +
     labs(
       x = "Day of Year",
-      y = ylab) +
+      y = var_lbl) +
     scale_x_continuous(
       breaks = seq(1, 365, 30),
       labels = function(x) format(as.Date(x, origin = "2000-01-01"), "%b %d"))

@@ -423,7 +423,10 @@ function(input, output, session) {
         time = as.POSIXct(date)) |>
       select(time, val = mean) |>
       plot_doy(
-        days_smooth = input$sld_t_days_smooth)
+        days_smooth = input$sld_t_days_smooth,
+        var         = input$sel_t_var,
+        is_imperial = input$sw_imperial
+        )
   }) # |>
     # debounce(rx_wait)
 
@@ -464,7 +467,9 @@ function(input, output, session) {
         days_smooth    = input$sld_r_days_smooth,
         color_thisyear = "purple",
         color_lastyear = "darkblue",
-        ylab           = "Rain, year to date (mm)")
+        var            = "pptytd",
+        is_imperial    = input$sw_imperial
+        )
   })
 
   # Sea Level [l] ----
@@ -612,7 +617,10 @@ function(input, output, session) {
       filter(
         bay_segment == input$sld_o_seg) |>
       plot_doy(
-        days_smooth = input$sld_o_days_smooth)
+        days_smooth = input$sld_o_days_smooth,
+        var         = 'sst',
+        is_imperial = input$sw_imperial
+        )
   })
 
   # Hurricanes [h] ----
