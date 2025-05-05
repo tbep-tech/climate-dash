@@ -477,7 +477,7 @@ function(input, output, session) {
   # * map_sl ----
   output$map_sl <- renderLeaflet({
     rx_map_init$sl <- T
-    map_sl()
+    map_sl(input$sw_dark)
   })
 
   # * ∆ map_sl ----
