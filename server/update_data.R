@@ -82,8 +82,8 @@ update_prism <- function() {
   d <- tbeptools::read_importprism(
     vars      = c("tmin", "tmax", "tdmean", "ppt"),
     vars_ytd  = c("ppt"),
-    date_beg  = as.Date("2024-11-01"),
-    date_end  = as.Date('2024-11-01'),
+    date_beg  = as.Date("1981-01-01"),
+    date_end  = Sys.Date(),
     bbox      = c(xmin = -82.9, ymin = 27.2, xmax = -81.7, ymax = 28.6),
     dir_tif   = here("data/prism"),
     sf_zones  = tb_zones,
