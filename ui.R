@@ -1,7 +1,7 @@
 thematic_shiny()
 page_navbar(
   title = "Tampa Bay Climate Change Indicators",
-  theme = dark,
+  theme = light,
 
   # Info [i] ----
   nav_panel(
@@ -187,7 +187,7 @@ page_navbar(
               "sld_t_days_smooth",
               "# of days for smoothing average",
               min        = 0,
-              value      = 7,
+              value      = 0,
               max        = 90,
               animate    = T) ) ),
 
@@ -278,7 +278,7 @@ page_navbar(
                 "sld_r_days_smooth",
                 "# of days for smoothing average",
                 min        = 0,
-                value      = 7,
+                value      = 0,
                 max        = 90,
                 animate    = T) ) ),
 
@@ -410,7 +410,7 @@ page_navbar(
                 "sld_o_days_smooth",
                 "# of days for smoothing average",
                 min        = 0,
-                value      = 7,
+                value      = 0,
                 max        = 90,
                 animate    = T) ) ),
 
@@ -498,7 +498,7 @@ page_navbar(
 
   # sw_dark ----
   nav_item(
-    input_switch("sw_dark", bs_icon("moon-stars-fill"), TRUE) ),
+    input_switch("sw_dark", bs_icon("moon-stars-fill"), FALSE) ),
 
   # sw_imperial ----
   nav_item(
