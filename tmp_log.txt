@@ -1,0 +1,31 @@
+2025-05-05 16:28:23 ~ Loading packages... 
+2025-05-05 16:28:42 ~ Setting up variables... 
+2025-05-05 16:28:43 ~ Starting data update process 
+2025-05-05 16:28:43 ~ Starting update: prism 
+2025-05-05 16:31:22 ~ Successfully completed update: prism 
+2025-05-05 16:31:22 ~ Starting update: sea_level 
+2025-05-05 16:31:23 ~ Error updating sea_level: [38;5;251m[36mℹ[38;5;251m In argument: `data = purrr::map(station_id, get_station_data)`.[39m
+[1mCaused by error in `purrr::map()`:[22m
+[38;5;251m[36mℹ[38;5;251m In index: 1.[39m
+[1mCaused by error in `value[[3L]]()`:[22m
+[33m![39m Error in httr2::request 
+2025-05-05 16:31:23 ~ Starting update: sst 
+2025-05-05 18:26:37 ~ Loading packages... 
+2025-05-05 18:26:45 ~ Setting up variables... 
+2025-05-05 18:26:45 ~ Starting data update process 
+2025-05-05 18:26:45 ~ Starting update: prism 
+2025-05-05 18:28:42 ~ Successfully completed update: prism 
+2025-05-05 18:28:42 ~ Starting update: sea_level 
+2025-05-05 18:28:42 ~ Error updating sea_level: [38;5;251m[36mℹ[38;5;251m In argument: `data = purrr::map(station_id, get_station_data)`.[39m
+[1mCaused by error in `purrr::map()`:[22m
+[38;5;251m[36mℹ[38;5;251m In index: 1.[39m
+[1mCaused by error in `value[[3L]]()`:[22m
+[33m![39m Error in httr2::request 
+2025-05-05 18:28:43 ~ Starting update: sst 
+2025-05-05 19:08:23 ~ Successfully completed update: sst 
+2025-05-05 19:08:23 ~ Starting update: hurricane 
+2025-05-05 19:09:33 ~ Successfully completed update: hurricane 
+2025-05-05 19:09:33 ~ Updating app cache 
+2025-05-05 19:09:53 ~ Data update process completed 
+2025-05-06 07:40:25 ~ Loading packages... 
+2025-05-06 07:40:42 ~ Setting up variables... 
