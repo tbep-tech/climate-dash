@@ -1,13 +1,5 @@
 # Update climate data for Tampa Bay
 
-# Need to set wd to project folder for here::here() to work
-# this will only work in the container
-script_path <- commandArgs(trailingOnly = FALSE)
-script_path <- script_path[grep("--file=", script_path)]
-script_path <- substring(script_path, 8)
-proj_path <- dirname(dirname(script_path))
-setwd(proj_path)
-
 # log_txt <- "/var/log/climate_data_update.log"
 log_txt <- here::here("tmp_log.txt") # DEBUG
 

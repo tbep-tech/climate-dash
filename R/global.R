@@ -21,7 +21,7 @@ dark  <- bs_theme(preset = "darkly")
 dir_cache  <- here("data/cache")
 cache_vars <- c(
   "d_prism_r", "d_prism_z", "yrs_prism", "now_prism", "prism_zones",          # prism
-  "sf_tb", "d_sst_r", "yrs_sst", "now_sst", "d_sst_z", "sst_zones", "r_sst", # sst
+  "sf_tb", "d_sst_r", "yrs_sst", "now_sst", "d_sst_z", "sst_zones",           # sst
   "d_sl", "sl_stations", "sl_station_default", "sl_yr_rng", "sl_yr_default",  # sea level
   "h_yrs", "h_st", "h_d", "h_d_sum", "h_yr_split",                            # hurricanes
   "d_temp", "d_rain", "d_sst")                                                # default data
