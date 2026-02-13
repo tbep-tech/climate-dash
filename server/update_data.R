@@ -15,7 +15,7 @@ log_message("Loading packages...")
 librarian::shelf(
   curl, dplyr, gert, glue, here, lubridate, sf,
   tbep-tech/tbeptools,
-  marinbon/extractr,
+  marinebon/extractr,
   quiet = TRUE)
 
 # Setup variables ----

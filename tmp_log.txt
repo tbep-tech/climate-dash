@@ -29,3 +29,50 @@
 2025-05-05 19:09:53 ~ Data update process completed 
 2025-05-06 07:40:25 ~ Loading packages... 
 2025-05-06 07:40:42 ~ Setting up variables... 
+2026-02-12 16:06:51 ~ Loading packages... 
+2026-02-12 16:06:51 ~ Setting up variables... 
+2026-02-12 16:07:15 ~ Starting data update process 
+2026-02-12 16:07:15 ~ Starting update: prism 
+2026-02-12 16:07:43 ~ Error updating prism: [1m[22m[36mℹ[39m In index: 1.
+[1mCaused by error in `.f()`:[22m
+[33m![39m PRISM web services have been centralized to provide 4km and 800m data for all regions from a single public web service.<br/><br/>Please view the updated web services documentation at https://prism.oregonstate.edu/documents/PRISM_downloads_web_service.pdf and update your web service calls and scripts.<br/><br/>Example call using new web service:<br/>https://services.nacse.org/prism/data/get/us/800m/ppt/20250624<br/> 
+2026-02-12 16:07:43 ~ Starting update: sea_level 
+2026-02-12 16:07:44 ~ Successfully completed update: sea_level 
+2026-02-12 16:07:44 ~ Starting update: sst 
+2026-02-12 16:41:49 ~ Loading packages... 
+2026-02-12 16:41:50 ~ Setting up variables... 
+2026-02-12 16:41:50 ~ Starting data update process 
+2026-02-12 16:41:50 ~ Starting update: prism 
+2026-02-12 16:42:07 ~ Error updating prism: [1m[22m[36mℹ[39m In index: 1.
+[1mCaused by error in `.f()`:[22m
+[33m![39m PRISM web services have been centralized to provide 4km and 800m data for all regions from a single public web service.<br/><br/>Please view the updated web services documentation at https://prism.oregonstate.edu/documents/PRISM_downloads_web_service.pdf and update your web service calls and scripts.<br/><br/>Example call using new web service:<br/>https://services.nacse.org/prism/data/get/us/800m/ppt/20250624<br/> 
+2026-02-12 16:42:07 ~ Starting update: sea_level 
+2026-02-12 16:42:08 ~ Successfully completed update: sea_level 
+2026-02-12 16:42:08 ~ Starting update: sst 
+2026-02-12 16:43:47 ~ Loading packages... 
+2026-02-12 16:43:51 ~ Setting up variables... 
+2026-02-12 16:43:51 ~ Starting data update process 
+2026-02-12 16:43:51 ~ Starting update: prism 
+2026-02-12 20:01:26 ~ Successfully completed update: prism 
+2026-02-12 20:01:26 ~ Starting update: sea_level 
+2026-02-12 20:01:28 ~ Successfully completed update: sea_level 
+2026-02-12 20:01:28 ~ Starting update: sst 
+2026-02-12 20:39:36 ~ Successfully completed update: sst 
+2026-02-12 20:39:36 ~ Starting update: hurricane 
+2026-02-12 20:39:37 ~ Successfully completed update: hurricane 
+2026-02-12 20:39:37 ~ Updating app cache 
+2026-02-12 20:39:50 ~ Data update process completed 
+2026-02-12 20:39:50 ~ Loading packages... 
+2026-02-12 20:39:51 ~ Setting up variables... 
+2026-02-12 20:39:51 ~ Starting data update process 
+2026-02-12 20:39:51 ~ Starting update: prism 
+2026-02-12 20:41:09 ~ Successfully completed update: prism 
+2026-02-12 20:41:09 ~ Starting update: sea_level 
+2026-02-12 20:41:10 ~ Successfully completed update: sea_level 
+2026-02-12 20:41:10 ~ Starting update: sst 
+2026-02-12 21:16:03 ~ Successfully completed update: sst 
+2026-02-12 21:16:03 ~ Starting update: hurricane 
+2026-02-12 21:16:18 ~ Successfully completed update: hurricane 
+2026-02-12 21:16:18 ~ Updating app cache 
+2026-02-12 21:16:45 ~ Data update process completed 
+2026-02-13 13:20:04 ~ Loading packages... 
