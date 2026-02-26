@@ -52,8 +52,13 @@ Sys.chmod(creds_file, "0600")
 git_config_global_set("credential.helper", "store")
 
 tryCatch({
-  git_push(repo = repo, verbose = TRUE)
-  log_message("Push complete")
+  result <- system2("git", c("-C", repo, "push", "origin", "main"),
+                    stdout = TRUE, stderr = TRUE)
+  exit_code <- attr(result, "status")
+  if (!is.null(exit_code) && exit_code != 0) {
+    stop(paste(result, collapse = "\n"))
+  }
+  log_message(paste("Push complete:", paste(result, collapse = " ")))
 }, error = function(e) {
   log_message(glue("Push failed: {conditionMessage(e)}"))
   stop(e)
