@@ -84,29 +84,6 @@ update_prism <- function() {
     verbose   = T)
 }
 
-git_update <- function() {
-  # Configure git credentials
-  git_config_set("user.name", Sys.getenv("GIT_USER"))
-  git_config_set("user.email", Sys.getenv("GIT_EMAIL"))
-
-  # Set up GitHub authentication
-  pat <- Sys.getenv("GITHUB_PAT")
-  if (pat == "")
-    stop("GITHUB_PAT environment variable not set")
-  git_config_set("credential.helper", "store")
-  git_config_global_set("github.token", pat)
-
-  # Add all changes in data directory
-  git_add(here("data"), repo = here())
-
-  # Commit with timestamp
-  commit_msg <- glue("update_data.R: {format(Sys.time(), '%Y-%m-%d %H:%M:%S')}")
-  git_commit(commit_msg, repo = here())
-
-  # Push changes using PAT
-  git_push(repo = here(), password = pat)
-}
-
 # Main Execution ----
 
 main <- function() {
@@ -117,8 +94,7 @@ main <- function() {
     prism     = update_prism,
     sea_level = update_sea_level,
     sst       = update_sst,
-    hurricane = update_hurricane)#,
-    # git       = git_update)
+    hurricane = update_hurricane)
 
   # Run each function with error handling
   lapply(names(update_fns), function(fn_name) {
