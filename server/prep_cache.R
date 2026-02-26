@@ -143,8 +143,8 @@ h_d_sum <- h_d |>
     .groups = "drop") |>
   mutate(
     label_md   = glue(
-      "<b>{year}</b>, {scale_sum} scale sum
-      {storms_n} storms (avg scale: {scale_avg}):
+      "<b>{year}</b>, {scale_sum} Saffir-Simpson sum
+      {storms_n} storms (avg Saffir-Simpson: {scale_avg}):
       {storms_md}"),
     label_html = markdownToHTML(label_md, fragment.only = T) )
 

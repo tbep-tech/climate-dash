@@ -667,7 +667,11 @@ function(input, output, session) {
           text  = NULL,
           group = yr_grp),
         data = d_g,
-        linetype = "dashed")
+        linetype = "dashed") + 
+      labs(
+        x = "Date", 
+        y = "Hurricane Index (sum of Saffir-Simpson per year)"
+      )
 
     ggplotly(p, tooltip = list("text"))
   })

@@ -21,7 +21,7 @@ page_navbar(
         includeMarkdown("doc/temp.md")
       ),
       accordion_panel(
-        "Rainfall",
+        "Rain",
         icon = bs_icon("cloud-rain-fill"),
         includeMarkdown("doc/rain.md")
       ),
@@ -77,6 +77,13 @@ page_navbar(
         showcase = plotlyOutput("bar_rain"),
         uiOutput("caption_rain")),
 
+      # * Sea Level ----
+      vb(
+        title    = span(bs_icon("water"), "Sea Level"),
+        value    = uiOutput("value_sl"),
+        showcase = plotlyOutput("bar_sl"),
+        uiOutput("caption_sl")),
+
       # * Ocean Temperature ----
       vb(
         title    = span(bs_icon("thermometer-low"), "Ocean Temperature"),
@@ -89,14 +96,7 @@ page_navbar(
         title    = span(bs_icon("tornado"), "Hurricanes"),
         value    = uiOutput("value_hurricanes"),
         showcase = plotlyOutput("bar_hurricanes"),
-        uiOutput("caption_hurricanes")),
-
-      # * Sea Level ----
-      vb(
-        title    = span(bs_icon("water"), "Sea Level"),
-        value    = uiOutput("value_sl"),
-        showcase = plotlyOutput("bar_sl"),
-        uiOutput("caption_sl"))
+        uiOutput("caption_hurricanes"))
 
     )),
 
