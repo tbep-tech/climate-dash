@@ -45,10 +45,11 @@ if (nrow(staged) == 0) {
   log_message(glue("Committed: {commit_msg}"))
 }
 
-# Embed credentials in remote URL (required by libgit2 for PAT auth)
+# Temporarily swap remote URL to embed credentials (required by libgit2 for PAT auth)
 original_url <- git_remote_info("origin", repo = repo)$url
 auth_url <- glue("https://{gh_user}:{pat}@github.com/tbep-tech/climate-dash.git")
-git_remote_set_url("origin", auth_url, repo = repo)
+git_remote_remove("origin", repo = repo)
+git_remote_add("origin", auth_url, repo = repo)
 
 tryCatch({
   git_push(repo = repo, verbose = TRUE)
@@ -58,5 +59,6 @@ tryCatch({
   stop(e)
 }, finally = {
   # Always restore clean URL (no credentials) regardless of success/failure
-  git_remote_set_url("origin", original_url, repo = repo)
+  git_remote_remove("origin", repo = repo)
+  git_remote_add("origin", original_url, repo = repo)
 })
