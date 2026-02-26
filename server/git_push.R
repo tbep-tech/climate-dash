@@ -30,6 +30,9 @@ git_config_global_set("user.email", email)
 
 repo <- here()
 
+# Allow git to operate on volume-mounted repos owned by a different user
+system2("git", c("config", "--global", "--add", "safe.directory", repo))
+
 # Stage all changes in data/
 git_add("data", repo = repo)
 
