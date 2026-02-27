@@ -53,7 +53,7 @@ page_navbar(
       "sld_date_split",
       "Date to split comparison",
       min        = as.Date("1980-01-01"),
-      value      = Sys.Date() - years(1),
+      value      = as.Date("2000-07-01"),
       max        = Sys.Date(),
       timeFormat = "%F",
       step       = 1,
