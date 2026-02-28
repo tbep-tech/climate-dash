@@ -392,7 +392,10 @@ plot_doy <- function(
 
   # get data for this and last year
   d_doy_tl <- d_doy |>
-    filter(grp != "other")
+    filter(grp != "other") |>
+    mutate(
+      date_lbl = format(as.Date(doy - 1, origin = paste0(year, "-01-01")), "%b %d")
+    )
 
   # plot
   g <- ggplot() +
@@ -426,7 +429,19 @@ plot_doy <- function(
   if (!interactive)
     return(g)
 
-  ggplotly(g)
+  d_last_sorted <- d_doy_tl |> filter(grp == "last") |> arrange(doy)
+  d_this_sorted <- d_doy_tl |> filter(grp == "this") |> arrange(doy)
+
+  p <- ggplotly(g)
+  n <- length(p$x$data)
+
+  # last two traces are "last year" and "this year" lines (in layer order)
+  p$x$data[[n - 1]]$text     <- paste0(yr_last, " - ", d_last_sorted$date_lbl, "<br>", round(d_last_sorted$val, 1))
+  p$x$data[[n - 1]]$hoverinfo <- "text"
+  p$x$data[[n]]$text          <- paste0(yr_this, " - ", d_this_sorted$date_lbl, "<br>", round(d_this_sorted$val, 1))
+  p$x$data[[n]]$hoverinfo     <- "text"
+
+  p
 }
 
 
