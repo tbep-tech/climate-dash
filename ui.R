@@ -487,30 +487,34 @@ page_navbar(
             sep     = "") ) ),
       plotlyOutput("plot_h") ) ),
 
-  # More ----
+  # More + sw_dark + sw_imperial ----
   nav_spacer(),
-  nav_menu(
-    title = "More",
-    align = "right",
-    nav_item(
-      tags$a(
-        shiny::icon("info-circle"),
-        "Source",
-        href   = "https://github.com/tbep-tech/climate-dash",
-        target = "_blank") ),
-    nav_item(
-      tags$a(
-        shiny::icon("envelope", class = "fa-solid"),
-        "Contact",
-        href   = "https://tbep.org/about-tbep/contact/",
-        target = "_blank") ) ),
-
-  # sw_dark ----
   nav_item(
-    input_switch("sw_dark", bs_icon("moon-stars-fill"), FALSE) ),
-
-  # sw_imperial ----
-  nav_item(
-    input_switch("sw_imperial", "ºF, in", TRUE) ),
+    tags$div(
+      class = "dropdown",
+      tags$a(
+        class            = "nav-link dropdown-toggle",
+        href             = "#",
+        `data-bs-toggle` = "dropdown",
+        "More"),
+      tags$ul(
+        class = "dropdown-menu dropdown-menu-end",
+        tags$li(tags$a(
+          class  = "dropdown-item",
+          href   = "https://github.com/tbep-tech/climate-dash",
+          target = "_blank",
+          shiny::icon("info-circle"), " Source")),
+        tags$li(tags$a(
+          class  = "dropdown-item",
+          href   = "https://tbep.org/about-tbep/contact/",
+          target = "_blank",
+          shiny::icon("envelope", class = "fa-solid"), " Contact")),
+        tags$li(tags$hr(class = "dropdown-divider")),
+        tags$li(tags$div(
+          class = "px-3 py-1",
+          input_switch("sw_dark", bs_icon("moon-stars-fill"), FALSE))),
+        tags$li(tags$div(
+          class = "px-3 py-1",
+          input_switch("sw_imperial", "ºF, in", TRUE)))))),
 
 )

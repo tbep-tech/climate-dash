@@ -14,6 +14,7 @@ set.seed(42)
 source(here("R/functions.R"))
 
 # themes ----
+theme_set(theme_minimal())
 light <- bs_theme(preset = "flatly")
 dark  <- bs_theme(preset = "darkly")
 
