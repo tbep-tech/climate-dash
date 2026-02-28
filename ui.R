@@ -1,7 +1,16 @@
 thematic_shiny()
 page_navbar(
-  title = "Tampa Bay Climate Change Indicators",
-  theme = light,
+  title  = "Tampa Bay Climate Change Indicators",
+  theme  = light,
+  footer = tagList(
+    tags$div(
+      id    = "loading-indicator",
+      style = "display: none; position: fixed; bottom: 15px; right: 15px; z-index: 9999;
+               background: rgba(0,0,0,0.6); color: white; padding: 5px 12px;
+               border-radius: 4px; font-size: 0.85em;",
+      bs_icon("arrow-repeat"), " Loading..."),
+    tags$style(
+      "html.shiny-busy #loading-indicator { display: block !important; }")),
 
   # Info [i] ----
   nav_panel(
