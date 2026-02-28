@@ -450,6 +450,7 @@ function(input, output, session) {
         md          = format(input$sld_r_md, "%m-%d"),
         yrs_now     = input$sld_r_yrs_now[1]:input$sld_r_yrs_now[2],
         yrs_then    = input$sld_r_yrs_then[1]:input$sld_r_yrs_then[2],
+        palette_rev = FALSE,
         is_imperial = input$sw_imperial)
   })
 
@@ -670,7 +671,7 @@ function(input, output, session) {
         linetype = "dashed") + 
       labs(
         x = "Date", 
-        y = "Hurricane Index (sum of Saffir-Simpson per year)"
+        y = "Hurricane Index (sum of Saffir-Simpson)"
       )
 
     ggplotly(p, tooltip = list("text"))
