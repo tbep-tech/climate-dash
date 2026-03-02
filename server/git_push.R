@@ -33,28 +33,37 @@ repo <- here()
 # Allow git to operate on volume-mounted repos owned by a different user
 system2("git", c("config", "--global", "--add", "safe.directory", repo))
 
-# Stage all changes in data/
-git_add("data", repo = repo)
-
-# Check if there is anything to commit
-status <- git_status(repo = repo)
-staged <- status[status$staged, ]
-
-if (nrow(staged) == 0) {
-  log_message("No new changes to commit — will still attempt push for any unpushed commits")
-} else {
-  commit_msg <- glue("weekly data update {format(Sys.Date(), '%Y-%m-%d')}")
-  git_commit(commit_msg, repo = repo)
-  log_message(glue("Committed: {commit_msg}"))
-}
-
-# Write credentials to git credential store, then clean up after push
+# Write credentials to git credential store, then clean up after all git ops
 creds_file <- path.expand("~/.git-credentials")
 writeLines(glue("https://{gh_user}:{pat}@github.com"), creds_file)
 Sys.chmod(creds_file, "0600")
 git_config_global_set("credential.helper", "store")
 
 tryCatch({
+  # Pull first to incorporate any remote changes before committing
+  pull_result <- system2("git", c("-C", repo, "pull", "--rebase", "--autostash", "origin", "main"),
+                         stdout = TRUE, stderr = TRUE)
+  pull_exit <- attr(pull_result, "status")
+  if (!is.null(pull_exit) && pull_exit != 0) {
+    stop(paste(pull_result, collapse = "\n"))
+  }
+  log_message(paste("Pull complete:", paste(pull_result, collapse = " ")))
+
+  # Stage all changes in data/
+  git_add("data", repo = repo)
+
+  # Check if there is anything to commit
+  status <- git_status(repo = repo)
+  staged <- status[status$staged, ]
+
+  if (nrow(staged) == 0) {
+    log_message("No new changes to commit — will still attempt push for any unpushed commits")
+  } else {
+    commit_msg <- glue("weekly data update {format(Sys.Date(), '%Y-%m-%d')}")
+    git_commit(commit_msg, repo = repo)
+    log_message(glue("Committed: {commit_msg}"))
+  }
+
   result <- system2("git", c("-C", repo, "push", "origin", "main"),
                     stdout = TRUE, stderr = TRUE)
   exit_code <- attr(result, "status")
@@ -63,7 +72,7 @@ tryCatch({
   }
   log_message(paste("Push complete:", paste(result, collapse = " ")))
 }, error = function(e) {
-  log_message(glue("Push failed: {conditionMessage(e)}"))
+  log_message(glue("Failed: {conditionMessage(e)}"))
   stop(e)
 }, finally = {
   file.remove(creds_file)
