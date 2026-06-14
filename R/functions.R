@@ -173,8 +173,9 @@ map_update_rasters <- function(
   # dates
   dates_now  <- as.Date(glue("{yrs_now}-{md}"))
   dates_then <- as.Date(glue("{yrs_then}-{md}"))
-  if (any(dates_now > now_prism))
-    dates_now[dates_now > now_prism] <- dates_now[dates_now > now_prism] - years(1)
+  now_data <- if (data == "sst") now_sst else now_prism
+  if (any(dates_now > now_data))
+    dates_now[dates_now > now_data] <- dates_now[dates_now > now_data] - years(1)
   yrs_now_rng  <- year(dates_now)
   yrs_then_rng <- year(dates_then)
   if (length(yrs_now_rng) > 2)
