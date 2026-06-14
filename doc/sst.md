@@ -1,4 +1,4 @@
-Sea surface temperature (SST) data is obtained from [NOAA's Coral Reef Watch](https://coralreefwatch.noaa.gov/) satellite observations via [ERDDAP](https://coastwatch.pfeg.noaa.gov/erddap/griddap/NOAA_DHW.html), featuring:
+Sea surface temperature (SST) data is obtained from [NOAA's Coral Reef Watch](https://coralreefwatch.noaa.gov/) satellite observations via [ERDDAP](https://pae-paha.pacioos.hawaii.edu/erddap/griddap/dhw_5km.html), featuring:
 
 - Daily sea surface temperature measurements
 - High-resolution satellite imagery

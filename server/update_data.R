@@ -43,7 +43,7 @@ update_sst <- function() {
     unlink(dir_nc, recursive = TRUE)
 
   extractr::ed_extract(
-    ed        = extractr::ed_info("https://coastwatch.pfeg.noaa.gov/erddap/griddap/NOAA_DHW.html"),
+    ed        = extractr::ed_info("https://pae-paha.pacioos.hawaii.edu/erddap/griddap/dhw_5km.html"),
     var       = "CRW_SST",
     bbox      = c(xmin = -83.0, ymin = 27.2 , xmax = -82.3, ymax= 28.5),
     sf_zones  = tb_zones,
