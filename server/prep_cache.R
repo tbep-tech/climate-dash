@@ -148,7 +148,24 @@ h_d_sum <- h_d |>
       {storms_md}"),
     label_html = markdownToHTML(label_md, fragment.only = T) )
 
-stopifnot(length(setdiff(h_yrs[1]:h_yrs[2], h_d_sum$year)) == 0) # TODO: add missing years
+missing_yrs <- setdiff(h_yrs[1]:h_yrs[2], h_d_sum$year)
+if (length(missing_yrs) > 0) {
+  h_d_sum <- bind_rows(
+    h_d_sum,
+    tibble(
+      year       = missing_yrs,
+      scale_sum  = 0L,
+      scale_avg  = 0,
+      storms_n   = 0L,
+      storms_md  = "",
+      label_md   = glue("<b>{missing_yrs}</b>, no storms within {h_buf_km} km"),
+      label_html = markdownToHTML(
+        glue("<b>{missing_yrs}</b>, no storms within {h_buf_km} km"),
+        fragment.only = T)
+    )
+  ) |>
+    arrange(year)
+}
 
 h_yr_split <- 2000
 
