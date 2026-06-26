@@ -25,7 +25,8 @@ if (!dir.exists(dir_cache))
 d_prism_r    <- read_prism_rasters(dir_prism)
 d_prism_z    <- read_csv(here("data/prism.csv"))
 yrs_prism     <- range(year(d_prism_r$date))
-now_prism     <- max(d_prism_r$date)
+now_prism_r   <- max(d_prism_r$date)   # raster max — used for map fallback
+now_prism     <- max(d_prism_z$date)   # CSV max — used for slider and plots
 
 prism_zones   <- d_prism_z |>
   distinct(bay_segment) |>
@@ -42,7 +43,7 @@ prism_zones   <- d_prism_z |>
   deframe()
 
 savevars_rds(c(
-  "d_prism_r", "d_prism_z", "yrs_prism", "now_prism", "prism_zones"))
+  "d_prism_r", "d_prism_z", "yrs_prism", "now_prism", "now_prism_r", "prism_zones"))
 
 # sst ----
 message("processing sst ...")
