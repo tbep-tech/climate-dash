@@ -82,6 +82,8 @@ update_prism <- function() {
     fld_zones = "bay_segment",
     zonal_csv = here("data/prism.csv"),
     verbose   = T)
+  local_max <- max(as.Date(d$date))
+  log_message(glue("PRISM local max: {local_max} ({as.integer(Sys.Date() - local_max)} days behind today)"))
 }
 
 # Main Execution ----
