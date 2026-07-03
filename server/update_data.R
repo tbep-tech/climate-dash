@@ -42,6 +42,12 @@ update_sst <- function() {
   if (dir.exists(dir_nc))
     unlink(dir_nc, recursive = TRUE)
 
+  # pae-paha.pacioos.hawaii.edu (ERDDAP) fails intermittently with a connection
+  # hang rather than a timely error, which otherwise blocks the rest of the
+  # update pipeline (including the cache rebuild) for hours
+  setTimeLimit(elapsed = 3600, transient = TRUE)
+  on.exit(setTimeLimit(elapsed = Inf, transient = TRUE), add = TRUE)
+
   extractr::ed_extract(
     ed        = extractr::ed_info("https://pae-paha.pacioos.hawaii.edu/erddap/griddap/dhw_5km.html"),
     var       = "CRW_SST",
