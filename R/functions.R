@@ -36,12 +36,12 @@ map_sl <- function(
 
   tiles = ifelse(
     dark_mode,
-    providers$CartoDB.DarkMatter,
-    providers$CartoDB.Positron)
+    providers$Esri.WorldGrayCanvas,
+    providers$Esri.WorldGrayCanvas)
 
   color_tbsegshed = ifelse(
     dark_mode,
-    "white",
+    "black",
     "black")
 
   leaflet() |>
@@ -99,8 +99,8 @@ map_init <- function(
 
 map_update_basemap <- function(
     map, dark_mode = T, is_swiping = T,
-    tiles_dark  = providers$CartoDB.DarkMatter,
-    tiles_light = providers$CartoDB.Positron,
+    tiles_dark  = providers$Esri.WorldGrayCanvas,
+    tiles_light = providers$Esri.WorldGrayCanvas,
     ...){
 
   tiles = ifelse(
@@ -141,7 +141,7 @@ map_update_polys <- function(
 
   ln_color = ifelse(
     dark_mode,
-    "white",
+    "black",
     "black")
 
   map |>
